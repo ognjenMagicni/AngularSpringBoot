@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-content">
+        <p class="title">
+            {{worker.name}} {{worker.surname}}
+          </p>
+        <p class="subtitle">
+            ID: {{worker.idWorker}}
+        </p>
+        <p class="subtitle">
+            Age: {{worker.age}}
+        </p>
+    </div> 
+  </div>
+  <div class="card">
+    <footer class="card-footer">
+      <a class="button" (click)="editVariableFunction()">Edit</a>
+      <button class="card-footer-item" (click)="deleteWorker()">Delete</button>
+    </footer>
+  </div>
+  @if(editVariable){
+    <form [formGroup]="profileGroup" (ngSubmit)="updateWorker()">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input formControlName="required" [(ngModel)]="worker.name" class="input" type="text" placeholder="e.g. alexsmith@gmail.com">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Location</label>
+            <div class="control">
+              <input formControlName="required" [(ngModel)]="worker.surname" class="input" type="text" placeholder="e.g. alexsmith@gmail.com">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Location</label>
+            <div class="control">
+              <input formControlName="required" [(ngModel)]="worker.age" class="input" type="text" placeholder="e.g. alexsmith@gmail.com">
+            </div>
+          </div>
+          <button [disabled]="!profileGroup.valid" type="submit" class="button">Insert</button>
+    
+    </form>
+    }

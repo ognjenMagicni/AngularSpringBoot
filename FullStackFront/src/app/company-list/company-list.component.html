@@ -1,0 +1,80 @@
+<div class="container is-flex is-justify-content-center is-align-items-center">
+  <div class="overlay"></div>
+  <div class="content has-text-centered">
+      <h1>Company List</h1>
+  </div>
+</div>
+<div class="container is-rounded mt-2 mb-6 has-background-primary p-4">
+  <button class="button" (click)="insertVariableFunction()">{{buttonText}}</button>
+
+@if(insertVariable){
+  <div class="container is-rounded has-background-danger m-2 p-4 ">
+    <form [formGroup]="profileGroup" (ngSubmit)="insertCompany()">
+        <div class="field">
+            <label class="has-text-white label">Name</label>
+            <div class="control">
+              <input formControlName="required" [(ngModel)]="company.name" class="input" type="text" placeholder="Company Name">
+            </div>
+          </div>
+          <div class="field">
+            <label class="has-text-white label">Location</label>
+            <div class="control">
+              <input formControlName="required" [(ngModel)]="company.location" class="input" type="text" placeholder="Location of Company">
+            </div>
+          </div>
+          <button [disabled]="!profileGroup.valid" type="submit" class="button">Insert</button>
+
+    </form>
+  </div>
+}
+</div>
+
+<div class="container">
+  <div class="grid is-col-min-15">
+@for( company of companyList; track company.idCompany ){
+      <div class="card">
+        <div class="card-image">
+        <figure class="image is-4by3">
+            <a [routerLink]="['/company',company.idCompany]">
+                <img 
+                src="https://bulma.io/assets/images/placeholders/1280x960.png"
+                alt="Placeholder image"
+                />
+            </a>
+        </figure>
+    </div>
+    
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <a [routerLink]="['/company',company.idCompany]">
+            <img
+              src="https://bulma.io/assets/images/placeholders/96x96.png"
+              alt="Placeholder image"
+            />
+            </a>
+          </figure>
+        </div>
+        <div class="media-content">
+            <a [routerLink]="['/company',company.idCompany]">
+                <p class="title is-4">{{company.name}}</p>
+            </a>
+        
+        </div>
+      </div>
+  
+      <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+        iaculis mauris. <a>bulmaio</a>. <a href="#">#css</a>
+        <a href="#">#responsive</a>
+        <br />
+        <p>
+                ID: {{company.idCompany}}<br>Location: {{company.location}}
+        </p>
+      </div>
+    </div>
+  </div>
+} 
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container is-flex is-justify-content-center is-align-items-center">
+    <div class="overlay"></div>
+    <div class="content has-text-centered">
+        <h1>Worker List</h1>
+    </div>
+</div>
+<div class="container is-rounded mt-2 mb-6 has-background-primary p-4">
+    <button class="button" (click)="insertVariableFunction()">{{buttonText}}</button>
+
+
+    @if( insertVariable ){
+        <div class="container is-rounded has-background-danger m-2 p-4 ">
+            <form [formGroup]="profileGroup" (ngSubmit)="insertClicked()">
+                <div class="field">
+                    <label class="has-text-white label">Name</label>
+                    <div class="control">
+                    <input [(ngModel)]="workerName" formControlName="required" class="input" type="text"  placeholder="e.g Simon">
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label class="has-text-white label">Surname</label>
+                    <div class="control">
+                    <input [(ngModel)]="workerSurname" formControlName="required" class="input" type="text" placeholder="e.g. Sinek">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="has-text-white label">Age</label> 
+                    <div class="control">
+                    <input [(ngModel)]="workerAge" formControlName="required" class="input" type="number" placeholder="e.g. 25">
+                    </div>
+                </div>
+                <button [disabled]="!profileGroup.valid" class="button" type="submit">Insert</button>
+            </form>
+        </div>
+    }
+</div>
+<div class="container">
+    <div class="grid is-col-min-15">
+            @for( worker of workerList; track worker.idWorker ){
+            <div class="card">
+                    <div class="card-image">
+                    <figure class="image is-4by3">
+                        <a [routerLink]="['/worker',worker.idWorker]">
+                            <img 
+                            src="https://bulma.io/assets/images/placeholders/1280x960.png"
+                            alt="Placeholder image"
+                            />
+                        </a>
+                    </figure>
+                </div>
+                
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <a [routerLink]="['/worker',worker.idWorker]">
+                        <img
+                          src="https://bulma.io/assets/images/placeholders/96x96.png"
+                          alt="Placeholder image"
+                        />
+                        </a>
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                        <a [routerLink]="['/worker',worker.idWorker]">
+                            <p [routerLink]="['/worker',worker.idWorker]" class="title is-4">{{worker.name}} {{worker.surname}}</p>
+                        </a>
+                    
+                    </div>
+                  </div>
+              
+                  <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+                    iaculis mauris. <a>bulmaio</a>. <a href="#">#css</a>
+                    <a href="#">#responsive</a>
+                    <br />
+                    <p>
+                            ID: {{worker.idWorker}}<br>Age: {{worker.age}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            }
+       
+    </div>
+</div>
+
